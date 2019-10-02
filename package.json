@@ -2,8 +2,15 @@
   "name": "address-book-1.0",
   "version": "1.0.0",
   "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "app.js"
+  },
   "repository": "https://github.com/accez/address-book-1.0.git",
   "author": "SimonPalmgren <simon.palmgren91@gmail.com>",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
