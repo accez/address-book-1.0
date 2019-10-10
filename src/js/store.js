@@ -5,7 +5,7 @@ try {
  store = JSON.parse(localStorage.store);
 }
 catch(e){
- store = {};
+ store = [];
 }
  
 store.save = function(){
