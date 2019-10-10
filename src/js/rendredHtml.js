@@ -39,6 +39,7 @@ tr.innerHTML
 table.append(tr)
 form.innerHTML
 body.append(form)
+form.setAttribute("id", "myForm")
 
 //forEach to render out all the th elements
 headerLabels.forEach(text => {
@@ -62,6 +63,7 @@ formText.forEach((text) => {
   input.setAttribute('type', text.type)
   input.setAttribute('name', text.name)
   input.setAttribute('id', text.name)
+  input.setAttribute("value", "democlass");
   div.append(input)
 })
 button.innerHTML = "Save"
