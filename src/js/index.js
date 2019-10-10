@@ -1,25 +1,27 @@
-let contacts = [{}]
+class Contact {
+  constructor(firstName, lastName, phoneNumbers, email) {
+    this.firstName = firstName
+    this.lastName = lastName
+    this.phoneNumbers = phoneNumbers
+    this.email = email
+  }
+}
 
-//Listner for save button
 let saveButtonListener = listen('click', '.save-button', e => {
   const firstNameInput = document.querySelector('#firstname').value
   const lastNameInput = document.querySelector('#lastname').value
   const emailInput = document.querySelector('#email').value
   const phoneInput = document.querySelector('#phonenumber').value
 
-  CreateContact(firstNameInput,lastNameInput,emailInput,phoneInput)
+  let newContact = new Contact(firstNameInput, lastNameInput, emailInput, phoneInput)
+  store.push(newContact)
+  store.forEach((value,key)=>{
+    value.id = key++
+  })
+  store.save();
+  resetForm();
 })
 
-//Creating my contact
-function CreateContact(firstname,lastname,email,phonenumber){
-  let contact = Object.create(contacts)
-  contact.firstname = firstname
-  contact.lastname = lastname
-  contact.email = email
-  contact.phonenumber = phonenumber
-  contacts.push(contact)
-  let newContacts = [...contacts]
-  store.contact = newContacts
-  store.save()
-  return contact
+resetForm = () => {
+  document.querySelector('#myForm').reset()
 }
