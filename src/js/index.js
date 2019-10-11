@@ -1,27 +1,16 @@
-class Contact {
-  constructor(firstName, lastName, phoneNumbers, email) {
-    this.firstName = firstName
-    this.lastName = lastName
-    this.phoneNumbers = phoneNumbers
-    this.email = email
+class Index {
+  constructor() {
+    this.body = document.body
+    this.createMain = document.createElement('main')
+    this.main = document.querySelector('main')
+    this.h1 = document.createElement('h1')
   }
-}
-
-let saveButtonListener = listen('click', '.save-button', e => {
-  const firstNameInput = document.querySelector('#firstname').value
-  const lastNameInput = document.querySelector('#lastname').value
-  const emailInput = document.querySelector('#email').value
-  const phoneInput = document.querySelector('#phonenumber').value
-
-  let newContact = new Contact(firstNameInput, lastNameInput, emailInput, phoneInput)
-  store.push(newContact)
-  store.forEach((value,key)=>{
-    value.id = key++
-  })
-  store.save();
-  resetForm();
-})
-
-resetForm = () => {
-  document.querySelector('#myForm').reset()
+  renderDOM() {
+    this.createMain.innerHTML
+    this.body.append(this.createMain)
+    this.h1.innerText = "Contacts"
+    this.createMain.append(this.h1)
+    this.AddressBook = new AddressBook()
+    this.Contact = new Contact()
+  }
 }
