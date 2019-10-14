@@ -1,8 +1,7 @@
 class AddressBook extends Index {
   constructor() {
     super()
-    this.copyStore = [...store]
-    this.headerLabels = ["ID", "Name", "Email", "Phone number", "Actions"]
+    this.headerLabels = ["Name", "Email", "Phone number", "Actions"]
     this.formText = [
       {
         text: "Name",
@@ -21,7 +20,7 @@ class AddressBook extends Index {
       }
     ]
     this.renderAddressBook();
-    this.renderContacts();
+    this.renderContacts()
   }
   renderAddressBook() {
     //Table content
@@ -61,10 +60,20 @@ class AddressBook extends Index {
     this.main.append(button)
   }
   renderContacts() {
-    const targetTable = document.querySelector('table')
-    const tr = document.createElement('tr')
-    tr.innerHTML
-    targetTable.append(tr)
-    this.copyStore.map(item => console.log(item))
+    this.copyStore.forEach((items)=>{
+      const targetTable = document.querySelector('table')
+      const tr = document.createElement('tr')
+      const tdName = document.createElement('td')
+      const tdEmail = document.createElement('td')
+      const tdPhoneNumber = document.createElement('td')
+      tr.innerHTML
+      targetTable.append(tr)
+      tdName.innerHTML = items.name
+      tdEmail.innerHTML = items.email
+      tdPhoneNumber.innerHTML = items.phonenumber
+      tr.append(tdName)
+      tr.append(tdEmail)
+      tr.append(tdPhoneNumber)
+    })
   }
 }

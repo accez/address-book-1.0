@@ -4,6 +4,8 @@ class Index {
     this.createMain = document.createElement('main')
     this.main = document.querySelector('main')
     this.h1 = document.createElement('h1')
+    this.copyStore = [...store]
+
   }
   renderDOM() {
     this.createMain.innerHTML
