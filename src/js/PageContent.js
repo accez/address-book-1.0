@@ -72,3 +72,29 @@ class PageContent {
     targetTable.append(tbody)
   }
 }
+
+const addressBook = new AddressBook()
+const editContact = new EditContact()
+listen('click', '.save-button', e => {
+  let emailArr = []
+  let phoneArr = []
+  const nameInput = document.querySelector('#name').value
+  const emailInput = document.querySelector('#email').value
+  const phoneNumberInput = document.querySelector('#phonenumber').value
+  emailArr.push(emailInput)
+  phoneArr.push(phoneNumberInput)
+  addressBook.add(new Contact(nameInput, emailArr, phoneArr))
+  addressBook.renderContacts()
+});
+
+listen('click', '.remove', e => {
+  let id = e.target.getAttribute('key')
+  addressBook.delete(store, id)
+})
+listen('click', '.edit', e => {
+  editContact.renderEditContact()
+})
+listen('click', '#back', e => {
+  document.querySelector("main").outerHTML = ""
+  new PageContent()
+})
