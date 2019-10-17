@@ -1,79 +1,48 @@
-class AddressBook extends Index {
+class AddressBook {
   constructor() {
-    super()
-    this.headerLabels = ["Name", "Email", "Phone number", "Actions"]
-    this.formText = [
-      {
-        text: "Name",
-        name: "name",
-        type: "text"
-      },
-      {
-        text: "Email",
-        name: "email",
-        type: "email"
-      },
-      {
-        text: "Phone number",
-        name: "phonenumber",
-        type: "tel"
+  }
+  add(contact) {
+    contact.id = store.contacts.length;
+    contact.remove = 'Remove';
+    store.contacts.push(contact)
+    store.save()
+  }
+  
+  delete(array,etarget){
+    let idToRemove;
+    array.contacts.filter((item, index) => {
+      if (item.id == etarget) {
+        idToRemove = index;
+        return true;
       }
-    ]
-    this.renderAddressBook();
+    })
+    store.contacts.splice(idToRemove, 1)
+    store.save()
     this.renderContacts()
   }
-  renderAddressBook() {
-    //Table content
-    const table = document.createElement('table')
-    const tr = document.createElement('tr')
-    const form = document.createElement('form')
-    const button = document.createElement('button')
-    table.innerHTML
-    this.main.append(table)
-    tr.innerHTML
-    table.append(tr)
-    this.headerLabels.forEach(text => {
-      const th = document.createElement('th')
-      th.innerHTML = text
-      tr.append(th)
-    })
-    //Form content
-    form.innerHTML
-    this.main.append(form)
-    form.setAttribute("id", "myForm")
-    this.formText.forEach((text) => {
-      const div = document.createElement('div')
-      const label = document.createElement('label')
-      const input = document.createElement('input')
-      div.innerHTML
-      form.append(div)
-      label.innerHTML = text.text
-      div.append(label)
-      //setting attributes to the input element
-      input.setAttribute('type', text.type)
-      input.setAttribute('name', text.name)
-      input.setAttribute('id', text.name)
-      div.append(input)
-    })
-    button.innerHTML = "Save"
-    button.setAttribute('class', 'save-button')
-    this.main.append(button)
-  }
+
   renderContacts() {
-    this.copyStore.forEach((items)=>{
-      const targetTable = document.querySelector('table')
+    let tbodySelector = document.querySelector('tbody')  
+    tbodySelector.innerHTML = ""
+  
+    store.contacts.forEach(items => {
       const tr = document.createElement('tr')
+      tr.innerHTML
+      tbodySelector.append(tr)
       const tdName = document.createElement('td')
       const tdEmail = document.createElement('td')
       const tdPhoneNumber = document.createElement('td')
-      tr.innerHTML
-      targetTable.append(tr)
+      const tdRemove = document.createElement('td')
       tdName.innerHTML = items.name
       tdEmail.innerHTML = items.email
-      tdPhoneNumber.innerHTML = items.phonenumber
+      tdPhoneNumber.innerHTML = items.phone
+      tdRemove.innerHTML = items.remove
+      tdRemove.setAttribute('class', 'remove')
+      tdRemove.setAttribute('key', items.id)
       tr.append(tdName)
       tr.append(tdEmail)
       tr.append(tdPhoneNumber)
+      tr.append(tdRemove)
     })
   }
 }
