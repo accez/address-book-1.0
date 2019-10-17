@@ -2,12 +2,13 @@ class AddressBook {
   constructor() {
   }
   add(contact) {
-    contact.id = store.contacts.length;
+    contact.id = Date.now()
     contact.remove = 'Remove';
+    contact.edit = "Edit"
     store.contacts.push(contact)
     store.save()
   }
-  
+
   delete(array,etarget){
     let idToRemove;
     array.contacts.filter((item, index) => {
@@ -33,16 +34,21 @@ class AddressBook {
       const tdEmail = document.createElement('td')
       const tdPhoneNumber = document.createElement('td')
       const tdRemove = document.createElement('td')
+      const tdEdit = document.createElement('td')
       tdName.innerHTML = items.name
       tdEmail.innerHTML = items.email
       tdPhoneNumber.innerHTML = items.phone
       tdRemove.innerHTML = items.remove
+      tdEdit.innerHTML = items.edit
       tdRemove.setAttribute('class', 'remove')
       tdRemove.setAttribute('key', items.id)
+      tdEdit.setAttribute('class', 'edit')
+      tdEdit.setAttribute('key', items.id)
       tr.append(tdName)
       tr.append(tdEmail)
       tr.append(tdPhoneNumber)
       tr.append(tdRemove)
+      tr.append(tdEdit)
     })
   }
 }
