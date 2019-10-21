@@ -73,6 +73,7 @@ class PageContent {
   }
 }
 
+//EventListners
 const addressBook = new AddressBook()
 const editContact = new EditContact()
 listen('click', '.save-button', e => {
@@ -92,6 +93,8 @@ listen('click', '.remove', e => {
   addressBook.delete(store, id)
 })
 listen('click', '.edit', e => {
+  let id = e.target.getAttribute('key')
+  editContact.findContact(store, id)
   editContact.renderEditContact()
 })
 listen('click', '#back', e => {
