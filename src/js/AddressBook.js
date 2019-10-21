@@ -7,19 +7,24 @@ class AddressBook {
     contact.edit = "Edit"
     store.contacts.push(contact)
     store.save()
+    this.resetForm()
   }
 
   delete(array,etarget){
     let idToRemove;
     array.contacts.filter((item, index) => {
       if (item.id == etarget) {
-        idToRemove = index;
-        return true;
+        idToRemove = index
+        return true
       }
     })
     store.contacts.splice(idToRemove, 1)
     store.save()
     this.renderContacts()
+  }
+
+  resetForm() {
+    document.querySelector('#myForm').reset()
   }
 
   renderContacts() {
