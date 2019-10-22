@@ -3,8 +3,9 @@ class AddressBook {
   }
   add(contact) {
     contact.id = Date.now()
-    contact.remove = 'Remove';
     contact.edit = "Edit"
+    contact.remove = 'Remove'
+    contact.history = []
     store.contacts.push(contact)
     store.save()
     this.resetForm()
@@ -52,8 +53,8 @@ class AddressBook {
       tr.append(tdName)
       tr.append(tdEmail)
       tr.append(tdPhoneNumber)
-      tr.append(tdRemove)
       tr.append(tdEdit)
+      tr.append(tdRemove)
     })
   }
 }
