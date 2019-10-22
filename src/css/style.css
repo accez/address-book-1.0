@@ -1,0 +1,96 @@
+main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.edit{
+  cursor: pointer;
+  text-align: center;
+  background-color: #17a2b8;
+}
+.remove{
+  cursor: pointer;
+  text-align: center;
+  background-color:#ff273c;
+}
+table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+table td, table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+#Actions{
+  text-align: center;
+}
+
+input[type=text], [type=tel],[type=email] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#myForm{
+  display: flex;
+  width: 50%;
+  align-content: center;
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+.save-button{
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+}
+.plusPhone,.plusEmail{
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+}
+.save-edit{
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+}
+.minusPhone,.minusEmail{
+  background-color: #ff273c;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+#back{
+  cursor: pointer;
+}
