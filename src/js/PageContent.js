@@ -68,6 +68,7 @@ class PageContent {
     })
     button.innerHTML = "Save"
     button.setAttribute('class', 'save-button')
+    button.setAttribute('type', 'button')
     form.append(button)
     const targetTable = document.querySelector('table')
     const tbody = document.createElement('tbody')
@@ -107,20 +108,27 @@ listen('click', '#back', e => {
 listen('click', '.plusEmail', e => {
     const emailDiv = document.querySelector('.input-div-email')
     const input = document.createElement('input')
-    const br = document.createElement('br')
     input.setAttribute('type','email')
     input.setAttribute('name','edit-email')
     input.setAttribute('class','email')
-    emailDiv.append(input,br)
+    emailDiv.append(input)
+})
+listen('click', '.minusEmail', e => {
+  const parent = document.querySelector('.input-div-email')
+  parent.removeChild(parent.lastElementChild);
 })
 listen('click', '.plusPhone', e => {
   const emailDiv = document.querySelector('.input-div-phone')
   const input = document.createElement('input')
-  const br = document.createElement('br')
   input.setAttribute('type','tel')
   input.setAttribute('name','edit-phone')
   input.setAttribute('class','phone')
-  emailDiv.append(input,br)
+  emailDiv.append(input)
+})
+listen('click', '.minusPhone', e => {
+  const parent = document.querySelector('.input-div-phone')
+  parent.removeChild(parent.lastElementChild);
+
 })
 listen('click', '.save-edit', e => {
   editContact.editName()
