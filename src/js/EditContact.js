@@ -2,27 +2,31 @@ class EditContact {
   constructor(contact) {
     this.contact = contact
   }
-
   renderEditContact() {
     const main = document.querySelector('main')
     const backButton = document.createElement('button')
-    const saveButton = document.createElement('button')
     const h1 = document.createElement('h1')
     //innerhtml
     main.innerHTML = ""
     h1.innerHTML = "Edit Contact"
     backButton.innerHTML = 'Back'
-    saveButton.innerHTML = "Save"
     //Setattribute
     backButton.setAttribute('id', 'back')
-    saveButton.setAttribute('class', 'save-edit')
     //append
     main.append(h1)
     this.renderEditNameForm()
     this.renderEditEmail()
     this.renderEditPhone()
-    main.append(saveButton)
+    this.renderSaveButton()
     main.append(backButton)
+  }
+  renderSaveButton(){
+    const saveButton = document.createElement('button')
+    const myFormSelector = document.querySelector('#myForm')
+    saveButton.innerHTML = "Save"
+    saveButton.setAttribute('class', 'save-edit')
+    saveButton.setAttribute('type', 'button')
+    myFormSelector.append(saveButton)
   }
 
   renderEditNameForm() {
@@ -31,14 +35,12 @@ class EditContact {
     const div = document.createElement('div')
     const label = document.createElement('label')
     const input = document.createElement('input')
-    const br = document.createElement('br')
     form.innerHTML
     form.setAttribute('id', 'myForm')
     div.innerHTML
     div.setAttribute('class', 'name-edit')
     label.innerHTML = "Edit Name"
     input.innerHTML
-    label.append(br)
     input.setAttribute('type', 'text')
     input.setAttribute('name', 'name-edit')
     input.setAttribute('class', 'name')
@@ -54,31 +56,31 @@ class EditContact {
     const div2 = document.createElement('div')
     const label = document.createElement('label')
     const button = document.createElement('button')
-    const br = document.createElement('br')
+    const button2 = document.createElement('button')
     div.innerHTML
     div.setAttribute('class', 'edit-email')
     form.append(div)
     label.innerHTML = 'Edit Email'
     div.append(label)
-    label.append(br)
     div2.setAttribute('class','input-div-email')
     div.append(div2)
     this.contact.email.forEach(item =>{
       const input = document.createElement('input')
-      const br = document.createElement('br')
-      br.innerHTML
       input.innerHTML
       input.setAttribute('type', 'email')
       input.setAttribute('name', 'edit-email')
       input.setAttribute('class', 'email')
       input.setAttribute('value', item)
       div2.append(input)
-      div2.append(br)
     })
     button.innerHTML = '+'
     button.setAttribute('class', 'plusEmail')
     button.setAttribute('type', 'button')
     div.append(button)
+    button2.innerHTML = '-'
+    button2.setAttribute('class', 'minusEmail')
+    button2.setAttribute('type', 'button')
+    div.append(button2)
   }
   renderEditPhone() {
     const form = document.querySelector('form')
@@ -86,7 +88,7 @@ class EditContact {
     const div2 = document.createElement('div')
     const label = document.createElement('label')
     const button = document.createElement('button')
-    const br = document.createElement('br')
+    const button2 = document.createElement('button')
     div.innerHTML
     div.setAttribute('class', 'edit-phone')
     form.append(div)
@@ -94,23 +96,23 @@ class EditContact {
     div.append(label)
     div2.setAttribute('class','input-div-phone')
     div.append(div2)
-    label.append(br)
     this.contact.phone.forEach(item =>{
       const input = document.createElement('input')
-      const br = document.createElement('br')
-      br.innerHTML
       input.innerHTML
       input.setAttribute('type', 'tel')
       input.setAttribute('name', 'edit-phone')
       input.setAttribute('class', 'phone')
       input.setAttribute('value', item)
       div2.append(input)
-      div2.append(br)
     })
     button.innerHTML = '+'
     button.setAttribute('class', 'plusPhone')
     button.setAttribute('type', 'button')
     div.append(button)
+    button2.innerHTML = '-'
+    button2.setAttribute('class', 'minusPhone')
+    button2.setAttribute('type', 'button')
+    div.append(button2)
   }
   findContact(array, target) {
     var item = array.contacts.find(item => item.id === Number(target))
