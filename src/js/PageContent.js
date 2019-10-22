@@ -42,8 +42,11 @@ class PageContent {
     this.headerLabels.forEach(text => {
       const th = document.createElement('th')
       th.innerHTML = text
+      th.setAttribute('id',text)
       tr.append(th)
     })
+    const select = document.querySelector('#Actions')
+    select.setAttribute('colspan', '2')
     //Form content
     form.innerHTML
     main.append(form)
@@ -65,7 +68,7 @@ class PageContent {
     })
     button.innerHTML = "Save"
     button.setAttribute('class', 'save-button')
-    main.append(button)
+    form.append(button)
     const targetTable = document.querySelector('table')
     const tbody = document.createElement('tbody')
     tbody.innerHTML
@@ -101,3 +104,28 @@ listen('click', '#back', e => {
   document.querySelector("main").outerHTML = ""
   new PageContent()
 })
+listen('click', '.plusEmail', e => {
+    const emailDiv = document.querySelector('.input-div-email')
+    const input = document.createElement('input')
+    const br = document.createElement('br')
+    input.setAttribute('type','email')
+    input.setAttribute('name','edit-email')
+    input.setAttribute('class','email')
+    emailDiv.append(input,br)
+})
+listen('click', '.plusPhone', e => {
+  const emailDiv = document.querySelector('.input-div-phone')
+  const input = document.createElement('input')
+  const br = document.createElement('br')
+  input.setAttribute('type','tel')
+  input.setAttribute('name','edit-phone')
+  input.setAttribute('class','phone')
+  emailDiv.append(input,br)
+})
+listen('click', '.save-edit', e => {
+  editContact.editName()
+  editContact.editEmail()
+  editContact.editPhone()
+  editContact.saveEditedContact()
+})
+
