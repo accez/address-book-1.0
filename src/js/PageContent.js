@@ -5,17 +5,22 @@ class PageContent {
       {
         text: "Name",
         name: "name",
-        type: "text"
+        type: "text",
+        placeholder:"Enter your name"
       },
       {
         text: "Email",
         name: "email",
-        type: "email"
+        type: "email",
+        placeholder:"Enter your email "
+
       },
       {
         text: "Phone number",
         name: "phonenumber",
-        type: "tel"
+        type: "tel",
+        placeholder:"Enter your phone number"
+
       }
     ]
     this.renderMain()
@@ -31,10 +36,14 @@ class PageContent {
   renderAddressBook() {
     //Table content
     const main = document.querySelector('main')
+    const h1 = document.createElement('h1')
+    const h2 = document.createElement('h2')
     const table = document.createElement('table')
     const tr = document.createElement('tr')
     const form = document.createElement('form')
     const button = document.createElement('button')
+    h1.innerHTML = "Contact List"
+    main.append(h1)
     table.innerHTML
     main.append(table)
     tr.innerHTML
@@ -51,6 +60,8 @@ class PageContent {
     form.innerHTML
     main.append(form)
     form.setAttribute("id", "myForm")
+    h2.innerHTML = "Add a contact"
+    form.append(h2)
     this.formText.forEach((text) => {
       const div = document.createElement('div')
       const label = document.createElement('label')
@@ -63,7 +74,7 @@ class PageContent {
       input.setAttribute('type', text.type)
       input.setAttribute('name', text.name)
       input.setAttribute('id', text.name)
-      input.setAttribute('value', text.name)
+      input.setAttribute('placeholder', text.placeholder)
       div.append(input)
     })
     button.innerHTML = "Save"
@@ -88,7 +99,8 @@ listen('click', '.save-button', e => {
   const phoneNumberInput = document.querySelector('#phonenumber').value
   emailArr.push(emailInput)
   phoneArr.push(phoneNumberInput)
-  addressBook.add(new Contact(nameInput, emailArr, phoneArr))
+  let arr = [{name:nameInput,email:emailArr,phone:phoneArr,button:'Restore',id:Date.now()}]
+  addressBook.add(new Contact(nameInput, emailArr, phoneArr,arr))
   addressBook.renderContacts()
 });
 
@@ -134,6 +146,14 @@ listen('click', '.save-edit', e => {
   editContact.editName()
   editContact.editEmail()
   editContact.editPhone()
+  editContact.saveToHistory()
   editContact.saveEditedContact()
+  editContact.renderHistoryInfo()
 })
 
+listen('click', '.Restore', e => {
+  let id = e.target.getAttribute('key')
+  editContact.restoreContacts(id)
+  editContact.saveEditedContact()
+  editContact.renderEditContact()
+})
