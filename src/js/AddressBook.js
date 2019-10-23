@@ -5,7 +5,6 @@ class AddressBook {
     contact.id = Date.now()
     contact.edit = "Edit"
     contact.remove = 'Remove'
-    contact.history = []
     store.contacts.push(contact)
     store.save()
     this.resetForm()
