@@ -1,6 +1,7 @@
 class EditContact {
   constructor(contact) {
     this.contact = contact
+    this.headerLabels = ["Name", "Email", "Phone number", "Actions"]
   }
   renderEditContact() {
     const main = document.querySelector('main')
@@ -14,13 +15,15 @@ class EditContact {
     backButton.setAttribute('id', 'back')
     //append
     main.append(h1)
+    this.renderHistory()
+    this.renderHistoryInfo()
     this.renderEditNameForm()
     this.renderEditEmail()
     this.renderEditPhone()
     this.renderSaveButton()
     main.append(backButton)
   }
-  renderSaveButton(){
+  renderSaveButton() {
     const saveButton = document.createElement('button')
     const myFormSelector = document.querySelector('#myForm')
     saveButton.innerHTML = "Save"
@@ -62,9 +65,9 @@ class EditContact {
     form.append(div)
     label.innerHTML = 'Edit Email'
     div.append(label)
-    div2.setAttribute('class','input-div-email')
+    div2.setAttribute('class', 'input-div-email')
     div.append(div2)
-    this.contact.email.forEach(item =>{
+    this.contact.email.forEach(item => {
       const input = document.createElement('input')
       input.innerHTML
       input.setAttribute('type', 'email')
@@ -94,9 +97,9 @@ class EditContact {
     form.append(div)
     label.innerHTML = 'Edit Phone'
     div.append(label)
-    div2.setAttribute('class','input-div-phone')
+    div2.setAttribute('class', 'input-div-phone')
     div.append(div2)
-    this.contact.phone.forEach(item =>{
+    this.contact.phone.forEach(item => {
       const input = document.createElement('input')
       input.innerHTML
       input.setAttribute('type', 'tel')
@@ -114,6 +117,51 @@ class EditContact {
     button2.setAttribute('type', 'button')
     div.append(button2)
   }
+  renderHistory() {
+    const main = document.querySelector('main')
+    const table = document.createElement('table')
+    const tr = document.createElement('tr')
+    const tbody = document.createElement('tbody')
+    table.innerHTML
+    main.append(table)
+    tr.innerHTML
+    table.append(tr)
+    this.headerLabels.forEach(text => {
+      const th = document.createElement('th')
+      th.innerHTML = text
+      th.setAttribute('id', text)
+      tr.append(th)
+    })
+    tbody.innerHTML
+    table.append(tbody)
+  }
+  renderHistoryInfo(){
+    let tbody = document.querySelector('tbody')
+    tbody.innerHTML = ""  
+    this.contact.history.forEach(items =>{
+      const tr = document.createElement('tr')
+      tr.innerHTML
+      tbody.append(tr)
+      const tdName = document.createElement('td')
+      const tdEmail = document.createElement('td')
+      const tdPhoneNumber = document.createElement('td')
+      const button = document.createElement('button')
+      tdName.innerHTML = items.name
+      tdEmail.innerHTML = items.email
+      tdPhoneNumber.innerHTML = items.phone
+      button.innerHTML = items.button
+      button.setAttribute('class',items.button)
+      button.setAttribute('key',items.id)
+      tr.append(tdName)
+      tr.append(tdEmail)
+      tr.append(tdPhoneNumber)
+      tr.append(button)
+    })
+  }
+  resetForm(){
+    let myFormSelector = document.querySelector('form')
+    myFormSelector.innerHTML = ""
+  }
   findContact(array, target) {
     var item = array.contacts.find(item => item.id === Number(target))
     this.contact = item
@@ -128,7 +176,7 @@ class EditContact {
     let arr = []
     for (const item of querySelectorEmail) {
       arr.push(item.value)
-      this.contact.email = arr
+      this.contact.email = [...arr]
     }
   }
   editPhone() {
@@ -136,7 +184,7 @@ class EditContact {
     let arr = []
     for (const item of querySelectorPhone) {
       arr.push(item.value)
-      this.contact.phone = arr
+      this.contact.phone = [...arr]
     }
   }
   saveEditedContact() {
@@ -144,5 +192,17 @@ class EditContact {
     var item2 = store.contacts.find(item => item.id === this.contact.id)
     store.contacts.splice(item, 1, item2)
     store.save()
+  }
+  restoreContacts(id){
+    let history = Object.values(this.contact)[3];
+    var item2 = history.find(item => item.id === Number(id))
+    this.contact.name = item2.name
+    this.contact.email = item2.email
+    this.contact.phone = item2.phone
+    this.contact.id = item2.id
+  }
+  saveToHistory() {
+    let newObj = { name: this.contact.name, email: this.contact.email, phone: this.contact.phone,button:'Restore',id:Date.now() }
+    this.contact.history.push(newObj)
   }
 }
