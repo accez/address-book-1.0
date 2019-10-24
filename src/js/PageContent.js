@@ -100,7 +100,11 @@ listen('click', '.save-button', e => {
   emailArr.push(emailInput)
   phoneArr.push(phoneNumberInput)
   let arr = [{name:nameInput,email:emailArr,phone:phoneArr,button:'Restore',id:Date.now()}]
-  addressBook.add(new Contact(nameInput, emailArr, phoneArr,arr))
+  if(nameInput === ''){
+    alert('Need to enter a name')
+  }else{
+    addressBook.add(new Contact(nameInput, emailArr, phoneArr,arr))
+  }
   addressBook.renderContacts()
 });
 
